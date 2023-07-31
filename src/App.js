@@ -3,15 +3,14 @@ import './App.css';
 import Navbar from './Navbar';
 import Heros from './components/Heros';
 import Product from './components/Product';
+import Card from './components/Card';
+import Contra from './components/RH/Contra';
 
 
 function App() {
   return (
     <div>
-    <Navbar></Navbar>
-    <Heros/>
-    <Product/>
-    
+      <Contra></Contra>
     
     </div>
   );
