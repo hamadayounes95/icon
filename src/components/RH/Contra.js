@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Contra = () => {
     const[nom, setNom]=useState('')
@@ -24,8 +25,15 @@ const Contra = () => {
         setContrat(event.target.value)
     }
 
-    const Ajout =(event)=>{
+    const Ajout =async(event)=>{
         event.preventDefault()
+        await axios.post('http://localhost:4000/employee',{
+          nom:nom,
+          prenom:prenom,
+          email:email,
+          telephone:telephone,
+          contrat:contrat 
+        })
         setEmployees([...employees,{
             nom:nom,
             prenom:prenom,
@@ -34,6 +42,14 @@ const Contra = () => {
             contrat:contrat
         }])
     }
+    const getdata = async ()=>{
+      const ras = await axios.get('http://localhost:4000/employee')
+      console.log(ras.data)
+      setEmployees(ras.data)
+    }
+    useEffect (()=>{
+      getdata()
+    },[])
 
   return (
     <div className='p-10'>
